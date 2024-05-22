@@ -1,0 +1,27 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: front-end
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: front-end
+  template:
+    metadata:
+      name: front-end-pod
+      labels:
+        app: front-end
+    spec:
+      containers:
+      - name: react-app
+        image: 165304734991.dkr.ecr.ap-northeast-1.amazonaws.com/cloudcrew-fe:test02
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "250m"
+          limits:
+            memory: "256Mi"
+            cpu: "500m"
+        ports:
+          - containerPort: 80

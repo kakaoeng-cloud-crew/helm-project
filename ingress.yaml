@@ -1,0 +1,18 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: cloudcrew-ingress
+  labels:
+    name: cloudcrew-ingress
+spec:
+  rules:
+  - host: cloudcrew.site
+    http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: front-end-service
+            port: 
+              number: 80

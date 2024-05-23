@@ -2,6 +2,9 @@ apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
   name: cloudcrew-ingress
+  namespace: cloudcrew
+  annotations:
+    # 필요한 내용이 있다면 작성
   labels:
     name: cloudcrew-ingress
 spec:
@@ -15,4 +18,11 @@ spec:
           service:
             name: front-end-service
             port: 
+              number: 80
+      - pathType: Prefix
+        path: "/api"
+        backend:
+          service:
+            name: back-end-service
+            port:
               number: 80
